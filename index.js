@@ -3,7 +3,7 @@ import express, { json } from 'express';
 import { connect } from 'mongoose';
 import MongoUserRepository from './src/infrastructure/repositories/MongoUserRepository.js';
 import CreateUserUseCase from './src/application/use-cases/CreateUserUseCase.js';
-import FindUserByIdUseCase from './src/application/use-cases/FindUserByIdUseCase.js'; './src/application/use-cases/FindUserByIdUseCase.js';
+import FindUserByIdUseCase from './src/application/use-cases/FindUserByIdUseCase.js';
 import UserController from './src/infrastructure/controllers/UserController.js';
 
 dotenv.config();
