@@ -1,12 +1,12 @@
 import dotenv from 'dotenv';
 import express, { json } from 'express';
 import { connect } from 'mongoose';
-import MongoUserRepository from './src/infrastructure/repositories/MongoUserRepository.js';
-import CreateUserUseCase from './src/application/use-cases/CreateUserUseCase.js';
-import FindUserByIdUseCase from './src/application/use-cases/FindUserByIdUseCase.js';
-import UpdateUserUseCase from './src/application/use-cases/UpdateUserUserCase.js';
-import DeleteUserUseCase from './src/application/use-cases/DeleteUserUseCase.js';
-import UserController from './src/infrastructure/controllers/UserController.js';
+import MongoUserRepository from './src/user/infrastructure/repositories/MongoUserRepository.js';
+import CreateUserUseCase from './src/user/application/use-cases/CreateUserUseCase.js';
+import FindUserByIdUseCase from './src/user/application/use-cases/FindUserByIdUseCase.js';
+import UpdateUserUseCase from './src/user/application/use-cases/UpdateUserUserCase.js';
+import DeleteUserUseCase from './src/user/application/use-cases/DeleteUserUseCase.js';
+import UserController from './src/user/infrastructure/controllers/UserController.js';
 
 dotenv.config();
 connect(process.env.MONGODB_URI);
