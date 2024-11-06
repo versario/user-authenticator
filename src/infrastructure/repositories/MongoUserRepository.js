@@ -22,6 +22,20 @@ class MongoUserRepository extends UserRepository {
         if (!foundUser) return null;
         return new User(foundUser._id, foundUser.name, foundUser.email, foundUser.password);
     }
+    async update(user) {
+        if (!Types.ObjectId.isValid(user.id)) return null;
+        const updatedUser = await UserModel.findByIdAndUpdate(
+            user.id,
+            {
+                name: user.name,
+                email: user.email,
+                password: user.password
+            },
+            { new: true }
+        );
+        if (!updatedUser) return null;
+        return new User(updatedUser._id, updatedUser.name, updatedUser.email, updatedUser.password);
+    }
 }
 
 export default MongoUserRepository;
