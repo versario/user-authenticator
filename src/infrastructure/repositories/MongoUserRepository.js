@@ -36,6 +36,11 @@ class MongoUserRepository extends UserRepository {
         if (!updatedUser) return null;
         return new User(updatedUser._id, updatedUser.name, updatedUser.email, updatedUser.password);
     }
+    async delete(id) {
+        if (!Types.ObjectId.isValid(id)) return false;
+        const deletedUser = await UserModel.findByIdAndDelete(id);
+        return !!deletedUser;
+    }
 }
 
 export default MongoUserRepository;

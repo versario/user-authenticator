@@ -5,6 +5,7 @@ import MongoUserRepository from './src/infrastructure/repositories/MongoUserRepo
 import CreateUserUseCase from './src/application/use-cases/CreateUserUseCase.js';
 import FindUserByIdUseCase from './src/application/use-cases/FindUserByIdUseCase.js';
 import UpdateUserUseCase from './src/application/use-cases/UpdateUserUserCase.js';
+import DeleteUserUseCase from './src/application/use-cases/DeleteUserUseCase.js';
 import UserController from './src/infrastructure/controllers/UserController.js';
 
 dotenv.config();
@@ -17,11 +18,13 @@ const userRepository = new MongoUserRepository();
 const createUserUseCase = new CreateUserUseCase(userRepository);
 const findUserByIdUseCase = new FindUserByIdUseCase(userRepository);
 const updateUserUseCase = new UpdateUserUseCase(userRepository);
-const userController = new UserController(createUserUseCase, findUserByIdUseCase, updateUserUseCase);
+const deleteUserUseCase = new DeleteUserUseCase(userRepository);
+const userController = new UserController(createUserUseCase, findUserByIdUseCase, updateUserUseCase, deleteUserUseCase);
 
 app.post('/users', (req, res) => userController.createUser(req, res));
 app.get('/users/:id', (req, res) => userController.findUserById(req, res));
 app.put('/users/:id', (req, res) => userController.updateUser(req, res));
+app.delete('/users/:id', (req, res) => userController.deleteUser(req, res));
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server is running on port ${process.env.PORT || 3000}`);
