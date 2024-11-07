@@ -1,18 +1,31 @@
 import UserRepository from '../../domain/repositories/UserRepository.js';
 import User from '../../domain/entities/User.js';
 import { Schema, model, Types } from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const userSchema = new Schema({
-    name: String,
-    email: String,
-    password: String
+    name: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
 });
 
 const UserModel = model('User', userSchema);
 
 class MongoUserRepository extends UserRepository {
     async create(user) {
-        const newUser = new UserModel(user);
+        const hashedPassword = await bcrypt.hash(user.password, 10);
+        const newUser = new UserModel({ ...user, password: hashedPassword });
         await newUser.save();
         return new User(newUser._id, newUser.name, newUser.email, newUser.password);
     }
@@ -43,4 +56,4 @@ class MongoUserRepository extends UserRepository {
     }
 }
 
-export default MongoUserRepository;
+export { MongoUserRepository, UserModel };

@@ -1,8 +1,8 @@
 class UserRepository {
-    create(user) {}
-    findById(id) {}
-    update(user) {}
-    delete(id) {}
+    async create(user) {}
+    async findById(id) {}
+    async update(user) {}
+    async delete(id) {}
 }
 
 export default UserRepository;
