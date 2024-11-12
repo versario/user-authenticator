@@ -1,5 +1,5 @@
-import RegisterUseCase from '../../application/RegisterUseCase.js';
-import LoginUseCase from '../../application/LoginUseCase.js';
+import RegisterUseCase from '../../application/use-cases/RegisterUseCase.js';
+import LoginUseCase from '../../application/use-cases/LoginUseCase.js';
 import CreateUserUseCase from '../../../user/application/use-cases/CreateUserUseCase.js';
 
 class AuthController {

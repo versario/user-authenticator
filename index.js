@@ -1,18 +1,21 @@
 import dotenv from 'dotenv';
 import express, { json } from 'express';
-import { connect } from 'mongoose';
+import connectToDatabase from './src/config/mongodb.js';
 import UserRoutes from './src/user/infrastructure/routes/UserRoutes.js';
 import AuthRoutes from './src/auth/infrastructure/routes/AuthRoutes.js';
 
 dotenv.config();
-connect(process.env.MONGODB_URI);
+
+connectToDatabase();
 
 const app = express();
 app.use(json());
 
-app.use('/users', UserRoutes); 
+app.use('/users', UserRoutes);
 app.use('/auth', AuthRoutes);
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server is running on port ${process.env.PORT || 3000}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

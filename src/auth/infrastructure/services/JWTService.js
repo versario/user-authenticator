@@ -11,7 +11,6 @@ class JWTService {
 
     verifyToken(token) {
         try {
-            console.log(this.secret);
             return jwt.verify(token, this.secret);
         } catch (error) {
             console.error('Token verification failed:', error);

@@ -1,6 +1,6 @@
 import { compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import AuthRepository from '../../domain/AuthRepository.js';
+import AuthRepository from '../../domain/repositories/AuthRepository.js';
 import { MongoUserRepository, UserModel } from '../../../user/infrastructure/repositories/MongoUserRepository.js';
 
 class MongoAuthRepository extends AuthRepository {

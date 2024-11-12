@@ -37,13 +37,16 @@ class MongoUserRepository extends UserRepository {
     }
     async update(user) {
         if (!Types.ObjectId.isValid(user.id)) return null;
+        const updateData = {};
+        if (user.name) updateData.name = user.name;
+        if (user.email) updateData.email = user.email;
+        if (user.password) {
+            const hashedPassword = await bcrypt.hash(user.password, 10);
+            updateData.password = hashedPassword;
+        }
         const updatedUser = await UserModel.findByIdAndUpdate(
             user.id,
-            {
-                name: user.name,
-                email: user.email,
-                password: user.password
-            },
+            updateData,
             { new: true }
         );
         if (!updatedUser) return null;
