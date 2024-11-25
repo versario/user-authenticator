@@ -51,7 +51,7 @@ Each feature (like user management and authentication) is almost entirely self-c
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v20.16.0 or higher)
 - MongoDB (either locally installed or a MongoDB Atlas account)
 
 ### Installation
