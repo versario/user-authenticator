@@ -46,6 +46,7 @@ Each feature (like user management and authentication) is almost entirely self-c
 - **jsonwebtoken**: For secure authentication.
 - **bcrypt**: For hashing user passwords.
 - **dotenv**: For managing environment variables.
+- **jest**: For unit testing.
 
 ## Getting Started
 
